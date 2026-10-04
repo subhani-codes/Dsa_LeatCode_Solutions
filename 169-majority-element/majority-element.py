@@ -1,12 +1,14 @@
+from typing import List
+
 class Solution:
-    def majorityElement(self, nums: list[int]) -> int:
-        n=len(nums)
-        container ={}
-        for i in nums:
-            if i in container:
-                container[i]+=1
+    def majorityElement(self, nums: List[int]) -> int:
+        candidate = None
+        count = 0
+        for num in nums:
+            if count == 0:
+                candidate = num
+            if num == candidate:
+                count += 1
             else:
-                container[i]=1
-            if container[i]> n/2:
-                return i
-        
+                count -= 1
+        return candidate
